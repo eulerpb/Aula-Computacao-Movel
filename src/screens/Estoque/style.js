@@ -39,22 +39,27 @@ export default StyleSheet.create({
         borderRadius: 20,
     },
 
-    addUserButton:{
+    tituloBox:{
         backgroundColor: '#151E47',
-        borderRadius:10,
-        height: 40,
-        width: 150,
-        marginLeft: 15,
-        marginTop: 15,
         alignItems: 'center',
         justifyContent: 'center',
+        borderRadius: 20,
+        height:35,
     },
 
-    addUserButtonText:{
+    tituloBoxText:{
         color: 'white',
     },
 
+    selecionarEstoque:{
+        fontSize: 15,
+        marginTop:15,
+        marginLeft:20,
+    },
 
+    secondBox:{
+        backgroundColor: '#EAE9E9',
+    },
 
 
     navBar:{
@@ -89,4 +94,5 @@ export default StyleSheet.create({
         height: 50,
         borderRadius:20,
     }
+
 })

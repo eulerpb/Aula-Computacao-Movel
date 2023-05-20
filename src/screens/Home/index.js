@@ -7,17 +7,17 @@ export default function Home({ navigation }) {
 
     return (
         <View style={styles.page}>
-            <View style={styles.container}>
+            <View style={styles.containerHome}>
                 <View style={styles.boxes}>
                     <View style={styles.box1}>
                         <Image style={styles.icones} source={require('../../../assets/emp_icon.png')} />
                         <Text style={styles.boxesText}>Itens em estoque</Text>
                     </View>
-                    <View style={styles.box2}>
+                    <View style={styles.box1}>
                         <Image style={styles.icones} source={require('../../../assets/package.png')} />
                         <Text style={styles.boxesText}>Reposição de itens</Text>
                     </View>
-                    <View style={styles.box3}>
+                    <View style={styles.box1}>
                         <Image style={styles.icones} source={require('../../../assets/alert.png')} />
                         <Text style={styles.boxesText}>Alertas</Text>
                     </View>
@@ -35,10 +35,10 @@ export default function Home({ navigation }) {
 
             <View style={styles.secondBox}>
                 <TouchableOpacity style={styles.crudButton}>
-                    <View style={styles.boxAddItem}></View>
+                    <View style={styles.boxCrud}></View>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.crudButton}>
-                    <View style={styles.boxRemItem}></View>
+                    <View style={styles.boxCrud}></View>
                 </TouchableOpacity>
             </View>
 
@@ -55,7 +55,9 @@ export default function Home({ navigation }) {
                     <View style={styles.boxMenuNoSelected}></View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.navBarButton}>
+                <TouchableOpacity 
+                    style={styles.navBarButton}
+                    onPress={() => navigation.navigate('Estoque')}>
                     <View style={styles.boxMenuNoSelected}></View>
 
                 </TouchableOpacity>

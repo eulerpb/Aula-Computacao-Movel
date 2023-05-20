@@ -13,7 +13,7 @@ export default StyleSheet.create({
         height: 140,
         left: 0,
         top: 0,
-        backgroundColor: '#6438E0',
+        backgroundColor: '#151E47',
         borderBottomLeftRadius: 30,
         borderBottomRightRadius: 30,
     },
@@ -40,7 +40,7 @@ export default StyleSheet.create({
     },
 
     tituloBox:{
-        backgroundColor: '#6438E0',
+        backgroundColor: '#151E47',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 20,
@@ -57,7 +57,7 @@ export default StyleSheet.create({
         width: '100%',
         height: 60,
         top: 700,
-        backgroundColor: '#6438E0',
+        backgroundColor: '#151E47',
         borderRadius: 20,
         flexDirection: 'row',
         alignItems: 'center',

@@ -6,13 +6,13 @@ export default StyleSheet.create({
             height: '100%',
         },
     
-        container: {
+        containerHome: {
             position: 'absolute',
             width: '100%',
             height: 302,
             left: 0,
             top: 0,
-            backgroundColor: '#6438E0',
+            backgroundColor: '#151E47',
             borderBottomLeftRadius: 30,
             borderBottomRightRadius: 30,
         },
@@ -33,7 +33,7 @@ export default StyleSheet.create({
             width: 100,
             height: 100,
             backgroundColor: 'white',
-            marginRight: 30,
+            marginHorizontal:15,
 
             
         },
@@ -53,23 +53,6 @@ export default StyleSheet.create({
             fontWeight: 'bold',
         },
 
-        box2: {
-            borderRadius: 10,
-            position: 'relative',
-            width: 100,
-            height: 100,
-            backgroundColor: 'white',
-            marginRight: 30,
-
-        },
-        box3: {
-            borderRadius: 10,
-            position: 'relative',
-            width: 100,
-            height: 100,
-            backgroundColor: 'white',
-        },
-    
         historic_box: {
             position: 'absolute',
             width: '90%',
@@ -93,7 +76,7 @@ export default StyleSheet.create({
         },
     
         moreButtonText:{
-            color: '#6438E0',
+            color: '#151E47',
             fontSize: 16,
         },
     
@@ -110,22 +93,14 @@ export default StyleSheet.create({
             flexDirection: 'row',
             justifyContent: 'space-between',
         },
-    
-        boxAddItem:{
+
+        boxCrud:{
             position: 'relative',
             width: 100,
             height: 100,
-            backgroundColor: '#6438E0',
+            backgroundColor: '#151E47',
             borderRadius: 20,
-            marginRight: 50,
-        },
-    
-        boxRemItem:{
-            position: 'relative',
-            width: 100,
-            height: 100,
-            backgroundColor: '#6438E0',
-            borderRadius: 20,
+            marginHorizontal:25,
 
         },
 
@@ -134,7 +109,7 @@ export default StyleSheet.create({
             width: '100%',
             height: 60,
             top: 700,
-            backgroundColor: '#6438E0',
+            backgroundColor: '#151E47',
             borderRadius: 20,
             flexDirection: 'row',
             alignItems: 'center',
