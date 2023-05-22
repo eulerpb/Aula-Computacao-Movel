@@ -34,7 +34,7 @@ export default StyleSheet.create({
         position: 'absolute',
         width: '90%',
         marginTop: 160,
-        height: 500,
+        height: 530,
         backgroundColor: '#fff',
         borderRadius: 20,
     },
@@ -55,10 +55,6 @@ export default StyleSheet.create({
         fontSize: 15,
         marginTop:15,
         marginLeft:20,
-    },
-
-    secondBox:{
-        backgroundColor: '#EAE9E9',
     },
 
 
@@ -93,6 +89,72 @@ export default StyleSheet.create({
         width: 60,
         height: 50,
         borderRadius:20,
+    },
+
+    horizontalMenu:{    
+        position:'relative',
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 20,
+        width:'90%',
+        height: 40,
+        flexDirection: 'row',
+        borderRadius:20,
+        backgroundColor: '#151E48',
+    },
+
+    menuButton:{
+        position:'relative',
+        marginHorizontal:20,
+        width:70,
+        height:40,
+        borderRadius:20,
+        backgroundColor: '#151E48',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    menuText:{
+        color:'#fff',
+        fontSize:15,
+        fontWeight:'500',
+    },
+
+    secondBox:{
+        position:'relative',
+        backgroundColor: '#EAE9E9',
+        height:400,
+        width: '90%',
+        borderRadius:20,
+        marginTop: 20,
+        alignSelf: 'center',
+    },
+
+    cabecalho:{
+        position:'relative',
+        flexDirection:'row',
+        alignItems: 'center',
+        marginTop:10,
+    },
+
+    cabecalhoText:{
+        fontSize:12,
+        color:'#000',
+        fontWeight:'bold',
+        marginLeft:'3%',
+    },
+    cabecalhoTextProduto:{
+        fontSize:12,
+        color:'#000',
+        fontWeight:'bold',
+        marginLeft:'3%',
+        marginRight:'36%',
+    },
+
+    icon:{
+        width: 20,
+        height:20,
     }
 
 })

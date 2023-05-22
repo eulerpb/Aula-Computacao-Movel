@@ -55,4 +55,11 @@ export default StyleSheet.create({
     width: 250,
   },
 
+  tituloSignUp:{
+    color:'#151E47',
+    fontSize:30,
+    fontWeight:'bold',
+    marginBottom: 30,
+  },
+
 })
