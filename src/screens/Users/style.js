@@ -53,40 +53,4 @@ export default StyleSheet.create({
     addUserButtonText:{
         color: 'white',
     },
-
-
-
-
-    navBar:{
-        position: 'absolute',
-        width: '100%',
-        height: 60,
-        top: 700,
-        backgroundColor: '#151E47',
-        borderRadius: 20,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-
-    },
-
-    navBarButton:{
-        marginRight: 30,
-    },
-
-    boxMenuSelected:{
-        position: 'relative',
-        backgroundColor: 'red',
-        width: 60,
-        height: 50,
-        borderRadius:20,
-    },
-
-    boxMenuNoSelected:{
-        position: 'relative',
-        backgroundColor: '#fff',
-        width: 60,
-        height: 50,
-        borderRadius:20,
-    }
 })

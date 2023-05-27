@@ -17,28 +17,6 @@ export default function Estoque ({ navigation }) {
                     <Text style={styles.addUserButtonText}>Adicionar usuário</Text>
                 </TouchableOpacity>
             </View>
-
-            <View style={styles.navBar}>
-                <TouchableOpacity 
-                 style={styles.navBarButton}
-                 onPress={() => navigation.navigate('Home')}>
-                    <View style={styles.boxMenuNoSelected}></View>
-                </TouchableOpacity>
-
-                <TouchableOpacity 
-                 style={styles.navBarButton}
-                 onPress={() => navigation.navigate('Manage')}>
-                    <View style={styles.boxMenuNoSelected}></View>
-                </TouchableOpacity>
-                
-                <TouchableOpacity style={styles.navBarButton}>
-                    <View style={styles.boxMenuNoSelected}></View>
-
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.navBarButton}>
-                    <View style={styles.boxMenuSelected}></View>
-                </TouchableOpacity>
-            </View>
         </View>
     );
 };

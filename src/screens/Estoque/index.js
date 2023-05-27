@@ -32,35 +32,6 @@ export default function Manage ({ navigation }) {
                     </View>
                 </View>
             </View>
-
-
-
-
-            <View style={styles.navBar}>
-                <TouchableOpacity 
-                 style={styles.navBarButton}
-                 onPress={() => navigation.navigate('Home')}>
-                    <View style={styles.boxMenuNoSelected}></View>
-                </TouchableOpacity>
-
-                <TouchableOpacity 
-                 style={styles.navBarButton}
-                 onPress={() => navigation.navigate('Manage')}>
-                    <View style={styles.boxMenuNoSelected}></View>
-                </TouchableOpacity>
-                
-                <TouchableOpacity
-                    style={styles.navBarButton}
-                    onPress={() => navigation.navigate('Estoque')}>
-                    <View style={styles.boxMenuSelected}></View>
-
-                </TouchableOpacity>
-                <TouchableOpacity 
-                 style={styles.navBarButton}
-                 onPress={() => navigation.navigate('Users')}>
-                 <View style={styles.boxMenuNoSelected}></View>
-                </TouchableOpacity>
-            </View>
         </View>
     );
 };
