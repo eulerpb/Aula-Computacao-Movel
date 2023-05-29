@@ -1,9 +1,10 @@
 import React from 'react';
-import { View , Text, TouchableOpacity, Image} from 'react-native';
-import styles from './style';
+import { FlatList, View , Text, TouchableOpacity, Image} from 'react-native';
+import styles from './styles';
+import ScrollButton from '../../components/ScrollButton';
 
 
-export default function Manage ({ navigation }) {
+export default function Manage () {
 
     return (
         <View style={styles.page}>
@@ -15,11 +16,8 @@ export default function Manage ({ navigation }) {
 
             <View style={styles.principalBox}>
                 <Text style={styles.selecionarEstoque}>Estoque Principal</Text>
-                <View style={styles.horizontalMenu}>
-                    <TouchableOpacity style={styles.menuButton}><Text style={styles.menuText}>Estoque</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.menuButton}><Text style={styles.menuText}>Entradas</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.menuButton}><Text style={styles.menuText}>Saídas</Text></TouchableOpacity>
-                </View>
+                <ScrollButton/>
+
 
                 <View style={styles.secondBox}>
                     <View style={styles.cabecalho}>

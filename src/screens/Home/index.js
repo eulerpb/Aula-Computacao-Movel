@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import styles from './style';
+import styles from './styles';
 
 
-export default function Home({ navigation }) {
+export default function Home() {
 
     return (
         <View style={styles.page}>

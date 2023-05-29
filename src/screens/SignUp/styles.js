@@ -5,22 +5,38 @@ export default StyleSheet.create({
     backgroundColor: '#EEF2FB',
     alignItems: 'center',
     height: '100%',
+    width:'100%'
   },
-
-  loginImage: {
-    width: 240,
-    height: 214,
-    marginBottom: 40,
-    alignItems: 'center',
-  },
-
+  
   containerLogin: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    width: '90%',
+    width: '100%',
   },
-  
+
+  container: {
+    position: 'absolute',
+    width: '100%',
+    top:0,
+    height: 140,
+    backgroundColor: '#151E47',
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+  },
+
+  tituloContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 140,
+  },
+
+  textoTitulo: {
+    fontSize: 30,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+
   input: {
     backgroundColor: '#fff',
     width: 300,
@@ -45,21 +61,6 @@ export default StyleSheet.create({
 
   loginButtonText: {
     color: '#FFF'
-  },
-
-  buttonContainer: {
-    height: 15,
-    flexDirection: 'row-reverse',
-    alignItems: 'center',
-    marginBottom: 15,
-    width: 250,
-  },
-
-  tituloSignUp: {
-    color: '#151E47',
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginBottom: 30,
   },
 
 })

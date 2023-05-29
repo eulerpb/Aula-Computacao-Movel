@@ -1,13 +1,18 @@
 import React from 'react';
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import styles from '../../Styles/style.js';
+import {Text, TextInput, TouchableOpacity, View } from 'react-native';
+import styles from './styles';
 
 export default function LoginScreen({ navigation }) {
   return (
     <View style={styles.background}>
       <View style={styles.containerLogin}>
 
-        <TextInput style={styles.tituloSignUp}>Criar conta</TextInput>
+        <View style={styles.container}>
+          <View style={styles.tituloContainer}>
+            <Text style={styles.textoTitulo}>Criar Conta</Text>
+          </View>
+        </View>
+
 
         <TextInput style={styles.input}
           placeholder='Nome de usuário'
@@ -30,7 +35,7 @@ export default function LoginScreen({ navigation }) {
         <TouchableOpacity
           style={styles.loginButtonContainer}
           onPress={() => navigation.navigate('Login')}>
-          <Text style={styles.loginButtonText}>Cadastrar</Text>
+          <Text style={styles.loginButtonText}>Criar Conta</Text>
         </TouchableOpacity>
       </View>
     </View>
