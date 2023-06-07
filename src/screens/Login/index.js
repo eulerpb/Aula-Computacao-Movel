@@ -1,10 +1,10 @@
 import React from 'react';
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import styles from '../../Styles/style.js';
+import styles from './styles';
 
 export default function LoginScreen({ navigation }) {
     return (
-        <View style={styles.background}>
+        <View style={styles.page}>
             <View style={styles.loginImage}>
                 <Image source={require('../../../assets/img-login3.png')} />
             </View>

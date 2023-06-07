@@ -3,7 +3,7 @@ import { View , Text, TouchableOpacity} from 'react-native';
 import styles from './style';
 
 
-export default function Estoque ({ navigation }) {
+export default function Estoque ({navigation}) {
     return (
         <View style={styles.page}>
             <View style={styles.container}>
@@ -13,7 +13,9 @@ export default function Estoque ({ navigation }) {
             </View>
 
             <View style={styles.principalBox}>
-                <TouchableOpacity style={styles.addUserButton}>
+                <TouchableOpacity 
+                    style={styles.addUserButton}
+                    onPress={() => navigation.navigate('Novo Usuário')}>
                     <Text style={styles.addUserButtonText}>Adicionar usuário</Text>
                 </TouchableOpacity>
             </View>

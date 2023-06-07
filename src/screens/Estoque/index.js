@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, View , Text, TouchableOpacity, Image} from 'react-native';
+import { View , Text, Image, Modal} from 'react-native';
 import styles from './styles';
 import ScrollButton from '../../components/ScrollButton';
 
