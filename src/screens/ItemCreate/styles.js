@@ -32,6 +32,10 @@ export default StyleSheet.create({
 
     newUserForms:{
         position:'relative',
+    },
+
+    radioContainer:{
+        flexDirection:'row',
     }
 
 })
