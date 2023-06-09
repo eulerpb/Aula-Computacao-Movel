@@ -121,6 +121,25 @@ export default StyleSheet.create({
     icon:{
         width: 20,
         height:20,
-    }
+    },
 
+    stockItem:{
+        position:'relative',
+        flexDirection:'row',
+        alignItems: 'center',
+        marginTop:10,
+        marginBottom:10,
+    },
+
+    stockItemText:{
+        fontSize:12,
+        color:'#000',
+        fontWeight:'bold',
+        marginLeft:'3%',
+    },
+
+    itemSeparator: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#ccc',
+      },
 })
