@@ -54,7 +54,7 @@ const NavBar = () => {
   )
 }
 
-const AppNavigator = () => {
+const AppNavigator = (props) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <NavigationContainer>

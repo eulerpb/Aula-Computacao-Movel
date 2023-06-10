@@ -46,7 +46,7 @@ export default function ItemCreate({ navigation }) {
                 </View>
             </View>
 
-            <View style={styles.newUserForms}>
+            <View style={styles.newItemForms}>
                 <TextInput
                     placeholder="ID do produto"
                     value={idproduto}
@@ -54,16 +54,36 @@ export default function ItemCreate({ navigation }) {
                     editable={false}
                 />
                 <TextInput
+                    style={styles.input}
                     placeholder="Nome do item"
                     value={name}
                     onChangeText={setName}
                 />
+
+                <View style={styles.radioContainer}>
+                    <RadioButtonComponent
+                        value="Caixa"
+                        label="Caixa"
+                        selectedValue={selectedValue}
+                        onValueChange={setSelectedValue}
+                    />
+                    <RadioButtonComponent
+                        value="unidade"
+                        label="Unidade"
+                        selectedValue={selectedValue}
+                        onValueChange={setSelectedValue}
+                    />
+                </View>
+
                 <TextInput
+                    style={styles.input}
                     placeholder="Descrição do item"
                     value={description}
                     onChangeText={setDescription}
                 />
+
                 <TextInput
+                    style={styles.input}
                     placeholder="Preço do item"
                     value={price}
                     onChangeText={setPrice}
@@ -72,22 +92,7 @@ export default function ItemCreate({ navigation }) {
             </View>
 
             <View>
-                <RadioButtonComponent
-                    value="Caixa"
-                    label="Caixa"
-                    selectedValue={selectedValue}
-                    onValueChange={setSelectedValue}
-                />
-                <RadioButtonComponent
-                    value="unidade"
-                    label="Unidade"
-                    selectedValue={selectedValue}
-                    onValueChange={setSelectedValue}
-                />
-            </View>
-
-            <View>
-                <TouchableOpacity style={styles.botao} onPress={() => setShowQRCode(!showQRCode)}>
+                <TouchableOpacity onPress={() => setShowQRCode(!showQRCode)}>
                     <Text>Gerar QR Code</Text>
                 </TouchableOpacity>
                 {showQRCode && (
@@ -97,12 +102,12 @@ export default function ItemCreate({ navigation }) {
                 )}
             </View>
 
-            <View>
-                <TouchableOpacity style={styles.botao} onPress={handleCreateItem}>
-                    <Text>Salvar</Text>
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.addItemButton} onPress={handleCreateItem}>
+                    <Text style={styles.buttonText}>Salvar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.botao} onPress={handleCancel}>
-                    <Text>Cancelar</Text>
+                <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
+                    <Text style={styles.buttonText}>Cancelar</Text>
                 </TouchableOpacity>
             </View>
 

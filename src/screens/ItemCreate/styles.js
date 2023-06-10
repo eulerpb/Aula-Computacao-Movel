@@ -30,12 +30,56 @@ export default StyleSheet.create({
         fontWeight: 'bold',
     },
 
-    newUserForms:{
+    newItemForms:{
         position:'relative',
+        marginTop:50,
     },
+
+    input: {
+        position:'relative',
+        backgroundColor: '#fff',
+        width: 300,
+        height: 50,
+        marginTop: 10,
+        color: '#222',
+        fontSize: 17,
+        borderRadius: 10,
+        padding: 10,
+      },
 
     radioContainer:{
         flexDirection:'row',
-    }
+        marginVertical:10,
+    },
 
+    buttonContainer:{
+        flexDirection:'row',
+        marginTop:20,
+        justifyContent:'center',
+        alignContent:'center',
+      },
+
+    addItemButton: {
+        height: 45,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 140,
+        borderRadius: 10,
+        backgroundColor: '#151E47',
+        marginRight:10,
+      },
+
+      buttonText: {
+        color: '#FFF'
+      },
+    
+      cancelButton:{
+        height: 45,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 140,
+        borderRadius: 10,
+        backgroundColor: 'red',
+        marginLeft:10,
+      },
 })
