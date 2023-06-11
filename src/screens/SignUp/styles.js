@@ -63,4 +63,9 @@ export default StyleSheet.create({
     color: '#FFF'
   },
 
+  errorText: {
+    color: 'red',
+    marginBottom: 10,
+  },
+
 })
