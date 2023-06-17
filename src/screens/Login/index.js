@@ -10,7 +10,6 @@ export default function LoginScreen({ navigation }) {
     const [errorMessage, setErrorMessage] = useState('');
     
     const handleLogin = () => {
-        // Lógica de autenticação aqui (por exemplo, verificar no banco de dados)
         if (email === 'teste@teste.com' && senha === '123456') {
             navigation.navigate('Home');
         } else {

@@ -11,11 +11,7 @@ export default function NewUser({ navigation }) {
   const [showModal, setShowModal] = useState(false);
 
   const handleCreateUser = () => {
-    // Gera um ID único para o novo use
     const generatedId = Math.random().toString(36).substr(2, 9);
-
-    // Lógica para criar um novo user com os dados fornecidos
-
     setIdProduto(generatedId);
   };
 

@@ -9,7 +9,6 @@ import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
 import Home from '../screens/Home';
 import Users from '../screens/Users';
-import Manage from '../screens/Manage';
 import Estoque from '../screens/Estoque';
 import ItemManage from '../screens/ItemManage';
 import ItemCreate from '../screens/ItemCreate';

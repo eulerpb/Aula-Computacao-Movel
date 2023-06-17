@@ -17,10 +17,7 @@ export default function ItemCreate({ navigation }) {
 
 
     const handleCreateItem = () => {
-        // Gera um ID único para o novo item
         const generatedId = Math.random().toString(36).substr(2, 9);
-
-        // Lógica para criar um novo item com os dados fornecidos
 
         setIdProduto(generatedId);
     };
