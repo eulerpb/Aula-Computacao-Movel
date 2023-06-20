@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import styles from './styles';
 import RadioButtonComponent from '../../components/RadioButton';
 import ConfirmationModal from '../../components/ConfirmationModal';
@@ -7,7 +7,7 @@ import QRCode from 'react-native-qrcode-svg';
 import axios from 'axios';
 
 export default function ItemCreate({ navigation }) {
-    const [selectedValue, setSelectedValue] = useState('unidade');
+    const [type, setType] = useState('unidade');
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -20,19 +20,22 @@ export default function ItemCreate({ navigation }) {
             const newItem = {
                 id: idproduto,
                 name,
-                selectedValue,
+                type,
                 description,
                 price,
             };
 
-            const response = await axios.post('http://192.168.0.109:3000/produtos', newItem);
+            const response = await axios.post('http://192.168.13.22:3000/produtos', newItem);
             console.log('Item created:', response.data);
 
             // Limpa os campos após a criação do item
             setIdProduto('');
             setName('');
+            setType('');
             setDescription('');
             setPrice('');
+            navigation.navigate('Produtos');
+
         } catch (error) {
             console.error('Error creating item:', error);
         }
@@ -77,14 +80,14 @@ export default function ItemCreate({ navigation }) {
                     <RadioButtonComponent
                         value="Caixa"
                         label="Caixa"
-                        selectedValue={selectedValue}
-                        onValueChange={setSelectedValue}
+                        selectedValue={type}
+                        onValueChange={setType}
                     />
                     <RadioButtonComponent
                         value="unidade"
                         label="Unidade"
-                        selectedValue={selectedValue}
-                        onValueChange={setSelectedValue}
+                        selectedValue={type}
+                        onValueChange={setType}
                     />
                 </View>
 

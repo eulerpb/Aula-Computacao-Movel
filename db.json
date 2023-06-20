@@ -1,60 +1,39 @@
 {
   "produtos": [
     {
-      "unidade": "teste 1",
-      "tipo": "Tipo 1",
-      "produto": "Produto 1"
-    },
-    {
-      "unidade": "alloo 2",
-      "tipo": "Tipo 2",
-      "produto": "Produto 2"
-    },
-    {
-      "unidade": "asdasd 3",
-      "tipo": "Tipo 3",
-      "produto": "Produto 3"
-    },
-    {
-      "id": "1",
-      "unidade": "tt",
-      "tipo": "tt",
-      "produto": "yy"
-    },
-    {
-      "id": "2",
-      "unidade": "adasd",
-      "tipo": "asdasd",
-      "produto": "asdasd"
-    },
-    {
-      "id": "CXcn3cc",
-      "name": "Teste",
-      "description": "akjbajfsbjakbsfk",
-      "price": "12"
-    },
-    {
-      "id": "pc9Qpsg",
-      "name": "Teste",
-      "description": "poaAKDPKkf",
-      "price": "123"
-    },
-    {
-      "id": "Mj4qcNX",
-      "name": "Teste novoasda",
-      "selectedValue": "unidade",
-      "description": "sda",
-      "price": "asdadasd"
-    }
-  ],
-  "comments": [
-    {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "name": "Produto 1",
+      "type": "Caixa",
+      "description": "Um exemplo de um produto qualquer",
+      "price": "123456"
+    },
+    {
+      "id": 2,
+      "name": "Teste 2",
+      "type": "unidade",
+      "description": "Mais um teste aqui né",
+      "price": "7894"
+    },
+    {
+      "id": 3,
+      "name": "ksksksksk",
+      "type": "unidade",
+      "description": "Teste 3",
+      "price": "789456"
+    },
+    {
+      "id": 4,
+      "name": "Item 3",
+      "type": "Caixa",
+      "description": "Apenas mais um item adicionado",
+      "price": "234"
+    },
+    {
+      "id": 5,
+      "name": "Macarrassa",
+      "type": "unidade",
+      "description": "asdad",
+      "price": "12"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
