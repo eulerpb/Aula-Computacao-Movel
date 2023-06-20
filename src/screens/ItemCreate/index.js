@@ -4,7 +4,7 @@ import styles from './styles';
 import RadioButtonComponent from '../../components/RadioButton';
 import ConfirmationModal from '../../components/ConfirmationModal';
 import QRCode from 'react-native-qrcode-svg';
-
+import axios from 'axios';
 
 export default function ItemCreate({ navigation }) {
     const [selectedValue, setSelectedValue] = useState('unidade');
@@ -15,11 +15,27 @@ export default function ItemCreate({ navigation }) {
     const [showModal, setShowModal] = useState(false);
     const [showQRCode, setShowQRCode] = useState(false);
 
+    const handleCreateItem = async () => {
+        try {
+            const newItem = {
+                id: idproduto,
+                name,
+                selectedValue,
+                description,
+                price,
+            };
 
-    const handleCreateItem = () => {
-        const generatedId = Math.random().toString(36).substr(2, 9);
+            const response = await axios.post('http://192.168.0.109:3000/produtos', newItem);
+            console.log('Item created:', response.data);
 
-        setIdProduto(generatedId);
+            // Limpa os campos após a criação do item
+            setIdProduto('');
+            setName('');
+            setDescription('');
+            setPrice('');
+        } catch (error) {
+            console.error('Error creating item:', error);
+        }
     };
 
     const handleCancel = () => {
