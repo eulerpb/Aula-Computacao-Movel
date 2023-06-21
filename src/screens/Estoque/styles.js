@@ -141,5 +141,5 @@ export default StyleSheet.create({
     itemSeparator: {
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
-      },
+    },
 })

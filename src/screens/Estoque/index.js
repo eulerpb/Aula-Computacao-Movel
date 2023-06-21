@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, FlatList } from 'react-native';
 import styles from './styles';
 import ScrollButton from '../../components/ScrollButton';
@@ -7,39 +7,36 @@ import axios from 'axios';
 const TableHeader = () => {
   return (
     <View style={styles.cabecalho}>
-      <Text style={styles.cabecalhoText}>Unidade</Text>
+      <Text style={styles.cabecalhoText}>Quantidade</Text>
       <Text style={styles.cabecalhoText}>|</Text>
       <Text style={styles.cabecalhoText}>Tipo</Text>
       <Text style={styles.cabecalhoText}>|</Text>
       <Text style={styles.cabecalhoTextProduto}>Produto</Text>
-      <Image style={styles.icon} source={require('../../../assets/icon-filter.png')} />
     </View>
   );
 };
 
-const StockItem = ({ unidade, tipo, produto }) => {
+const StockItem = ({ quant, type, name }) => {
   return (
     <View style={styles.stockItem}>
-      <Text style={styles.stockItemText}>{unidade}</Text>
+      <Text style={styles.stockItemText}>{quant}</Text>
       <Text style={styles.stockItemText}>|</Text>
-      <Text style={styles.stockItemText}>{tipo}</Text>
+      <Text style={styles.stockItemText}>{type}</Text>
       <Text style={styles.stockItemText}>|</Text>
-      <Text style={styles.stockItemText}>{produto}</Text>
+      <Text style={styles.stockItemText}>{name}</Text>
     </View>
   );
 };
 
-
 export default function Manage() {
-  // Dados do estoque (exemplo)
-
-  const [stockData, setStockData] = useState(true);
+  const [stockData, setStockData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://192.168.13.22:3000/produtos');
-        setStockData(response.data);
+        const filteredData = response.data.filter(item => item.quant > 0);
+        setStockData(filteredData);
       } catch (error) {
         console.error(error);
       }
@@ -58,18 +55,17 @@ export default function Manage() {
 
       <View style={styles.principalBox}>
         <Text style={styles.selecionarEstoque}>Estoque Principal</Text>
-        <ScrollButton />
+        
+        {/* <ScrollButton /> */}
 
-        <View style={styles.secondBox}>
-          <TableHeader />
-          <FlatList
-            data={stockData}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => <StockItem {...item} />}
-            ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
-          />
-        </View>
+        <TableHeader />
+        <FlatList
+          data={stockData}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <StockItem {...item} />}
+          ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
+        />
       </View>
     </View>
   );
-};
+}

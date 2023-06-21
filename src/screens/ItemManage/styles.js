@@ -90,5 +90,10 @@ export default StyleSheet.create({
 
   refreshButton:{
     marginLeft:30,
-  }
+  },
+
+  itemSeparator: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
 })

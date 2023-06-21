@@ -23,17 +23,12 @@ export default function ItemCreate({ navigation }) {
                 type,
                 description,
                 price,
+                quant: 0,
             };
 
             const response = await axios.post('http://192.168.13.22:3000/produtos', newItem);
             console.log('Item created:', response.data);
 
-            // Limpa os campos após a criação do item
-            setIdProduto('');
-            setName('');
-            setType('');
-            setDescription('');
-            setPrice('');
             navigation.navigate('Produtos');
 
         } catch (error) {
@@ -78,13 +73,13 @@ export default function ItemCreate({ navigation }) {
 
                 <View style={styles.radioContainer}>
                     <RadioButtonComponent
-                        value="Caixa"
+                        value="Cx"
                         label="Caixa"
                         selectedValue={type}
                         onValueChange={setType}
                     />
                     <RadioButtonComponent
-                        value="unidade"
+                        value="Un"
                         label="Unidade"
                         selectedValue={type}
                         onValueChange={setType}
