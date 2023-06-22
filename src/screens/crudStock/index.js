@@ -5,7 +5,8 @@ import styles from './styles';
 import RadioButtonComponent from '../../components/RadioButton';
 import axios from 'axios';
 
-export default function ManageEstoque1({ }) {
+export default function ManageEstoque1({ navigation }) {
+    const [selectedOption, setSelectedOption] = useState('Adicionar');
     const [quantity, setQuantity] = useState(0);
     const [selectedProduct, setSelectedProduct] = useState('');
     const [productList, setProductList] = useState([]);
@@ -33,6 +34,32 @@ export default function ManageEstoque1({ }) {
         }
     };
 
+    const handleSave = async () => {
+        try {
+            const selectedProductItem = productList.find(product => product.name === selectedProduct);
+
+            if (selectedProductItem) {
+                const updatedQuantity = selectedProductItem.quant + (quantity * (selectedOption === 'Adicionar' ? 1 : -1));
+
+                await axios.put(`http://192.168.0.103:3000/produtos/${selectedProductItem.id}`, {
+                    ...selectedProductItem,
+                    quant: updatedQuantity,
+                });
+
+                // Atualize a lista de produtos com a nova quantidade
+                const updatedProductList = productList.map(product =>
+                    product.id === selectedProductItem.id ? { ...product, quant: updatedQuantity } : product
+                );
+                setProductList(updatedProductList);
+            }
+
+            navigation.navigate('Home');
+
+        } catch (error) {
+            console.error('Erro ao atualizar a quantidade:', error);
+        }
+    };
+
     return (
         <View style={styles.page}>
             <View style={styles.container}>
@@ -45,10 +72,14 @@ export default function ManageEstoque1({ }) {
                         <RadioButtonComponent
                             value="Adicionar"
                             label="Adicionar"
+                            selectedValue={selectedOption}
+                            onValueChange={setSelectedOption}
                         />
                         <RadioButtonComponent
                             value="Remover"
                             label="Remover"
+                            selectedValue={selectedOption}
+                            onValueChange={setSelectedOption}
                         />
                     </View>
 
@@ -77,9 +108,8 @@ export default function ManageEstoque1({ }) {
                         </Picker>
                     </View>
 
-
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.addItemButton}>
+                        <TouchableOpacity style={styles.addItemButton} onPress={handleSave}>
                             <Text style={styles.buttonText}>Salvar</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.cancelButton}>
