@@ -63,7 +63,7 @@ export default StyleSheet.create({
 
     buttonContainer: {
         flexDirection: 'row',
-        marginTop: 50,
+        marginTop: 100,
         justifyContent: 'center',
         alignContent: 'center',
     },
@@ -94,11 +94,16 @@ export default StyleSheet.create({
 
     picker: {
         height: 40,
-        width: '100%',
+        marginLeft:20,
+        width: '70%',
         marginBottom: 10,
         backgroundColor: '#FFF',
         borderRadius: 5,
         paddingHorizontal: 10,
     },
+
+    pickerItem:{
+        fontSize:15,
+    }
 
 })

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import styles from './styles';
@@ -8,6 +8,20 @@ import axios from 'axios';
 export default function ManageEstoque1({ }) {
     const [quantity, setQuantity] = useState(0);
     const [selectedProduct, setSelectedProduct] = useState('');
+    const [productList, setProductList] = useState([]);
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
+    const fetchProducts = async () => {
+        try {
+            const response = await axios.get('http://192.168.0.103:3000/produtos');
+            setProductList(response.data);
+        } catch (error) {
+            console.log('Erro ao buscar os produtos:', error);
+        }
+    };
 
     const handleIncrement = () => {
         setQuantity(quantity + 1);
@@ -18,8 +32,6 @@ export default function ManageEstoque1({ }) {
             setQuantity(quantity - 1);
         }
     };
-
-    const productList = ['Produto 1', 'Produto 2', 'Produto 3'];
 
     return (
         <View style={styles.page}>
@@ -53,18 +65,18 @@ export default function ManageEstoque1({ }) {
                         <TouchableOpacity style={styles.button} onPress={handleIncrement}>
                             <Text style={styles.buttonText}>+</Text>
                         </TouchableOpacity>
+                        <Picker
+                            selectedValue={selectedProduct}
+                            onValueChange={(itemValue) => setSelectedProduct(itemValue)}
+                            style={styles.picker}
+                            itemStyle={styles.pickerItem}>
+                            <Picker.Item label="Selecione um produto" value="" />
+                            {productList.map((product) => (
+                                <Picker.Item key={product.id} label={product.name} value={product.name} />
+                            ))}
+                        </Picker>
                     </View>
 
-                    <Picker
-                        selectedValue={selectedProduct}
-                        onValueChange={(itemValue) => setSelectedProduct(itemValue)}
-                        style={styles.picker}
-                    >
-                        <Picker.Item label="Selecione um produto" value="" />
-                        {productList.map((product) => (
-                            <Picker.Item key={product} label={product} value={product} />
-                        ))}
-                    </Picker>
 
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.addItemButton}>
