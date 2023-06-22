@@ -34,7 +34,7 @@ export default function ItemManage({ navigation }) {
     const [stockData, setStockData] = useState(true);
     const refreshData = async () => {
         try {
-            const response = await axios.get('http://192.168.0.100:3000/produtos');
+            const response = await axios.get('http://192.168.0.103:3000/produtos');
             setStockData(response.data);
         } catch (error) {
             console.error(error);
@@ -44,7 +44,7 @@ export default function ItemManage({ navigation }) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://192.168.0.100:3000/produtos');
+                const response = await axios.get('http://192.168.0.103:3000/produtos');
                 setStockData(response.data);
             } catch (error) {
                 console.error(error);

@@ -4,6 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 import styles from './styles';
 import RadioButtonComponent from '../../components/RadioButton';
 import axios from 'axios';
+import { format } from 'date-fns';
 
 export default function ManageEstoque1({ navigation }) {
     const [selectedOption, setSelectedOption] = useState('Adicionar');
@@ -46,7 +47,16 @@ export default function ManageEstoque1({ navigation }) {
                     quant: updatedQuantity,
                 });
 
-                // Atualize a lista de produtos com a nova quantidade
+                const currentDate = format(new Date(), 'dd/MM HH:mm');
+
+                await axios.post('http://192.168.0.103:3000/activity', {
+                    productId: selectedProductItem.id,
+                    action: selectedOption,
+                    quantity: quantity,
+                    item: selectedProductItem.name,
+                    date: currentDate,
+                });
+
                 const updatedProductList = productList.map(product =>
                     product.id === selectedProductItem.id ? { ...product, quant: updatedQuantity } : product
                 );

@@ -7,7 +7,7 @@ export default StyleSheet.create({
     },
 
     containerHome: {
-        position: 'absolute',
+        position: 'relative',
         width: '100%',
         height: 302,
         left: 0,
@@ -62,10 +62,10 @@ export default StyleSheet.create({
     },
 
     historic_box: {
-        position: 'absolute',
+        position: 'relative',
         width: '90%',
-        height: 182,
-        top: 329,
+        height: 300,
+        marginTop: 20,
         backgroundColor: '#fff',
         borderRadius: 20,
         left: '5%',
@@ -89,7 +89,7 @@ export default StyleSheet.create({
     },
 
     secondBox: {
-        top: 550,
+        marginTop:10,
         height: 100,
         width: '100%',
         flexDirection: 'row',
@@ -149,5 +149,25 @@ export default StyleSheet.create({
         top:10,
         right:20,
 
-    }
+    },
+
+    itemSeparator: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#ccc',
+    },
+
+    historyList: {
+        position: 'relative',
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 20,
+        marginBottom: 10,
+      },
+    
+      historyListText: {
+        fontSize: 12,
+        color: '#000',
+        fontWeight: 'bold',
+        marginLeft: '3%',
+      }
 })

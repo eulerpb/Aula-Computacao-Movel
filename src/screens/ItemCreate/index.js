@@ -26,7 +26,7 @@ export default function ItemCreate({ navigation }) {
                 quant: 0,
             };
 
-            const response = await axios.post('http://192.168.0.100:3000/produtos', newItem);
+            const response = await axios.post('http://192.168.0.103:3000/produtos', newItem);
             console.log('Item created:', response.data);
 
             navigation.navigate('Produtos');

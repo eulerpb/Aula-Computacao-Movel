@@ -36,7 +36,7 @@ const NavBar = () => {
 
       <Tab.Screen name="Produtos" component={ItemManage} options={{ headerShown: false, tabBarIcon: ({color}) => (
         <View>
-          <Ionicons name='home' color={color} size={20} />
+          <Ionicons name='basket' color={color} size={25} />
         </View>
       )}}/>
 
@@ -48,7 +48,7 @@ const NavBar = () => {
 
       <Tab.Screen name="Estoque" component={Estoque} options={{ headerShown: false, tabBarIcon: ({color}) => (
         <View>
-          <Ionicons name='clipboard' color={color} size={25} />
+          <Ionicons name='clipboard' color={color} size={20} />
         </View>
       )}}/>
     </Tab.Navigator>
