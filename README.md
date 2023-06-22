@@ -36,3 +36,10 @@ npm i react-native-qrcode-svg
 ```bash
 npm i react-native-paper
 ``` 
+```bash
+npm install axios
+``` 
+
+```bash
+npm install @react-native-picker/picker
+``` 

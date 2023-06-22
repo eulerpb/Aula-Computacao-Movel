@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from './styles';
 import Feather from 'react-native-vector-icons/Feather';
 
-const Home = ({ userName }) => {
+const Home = ({ userName, navigation }) => {
 
     const renderBox = (icon, titulo, quantidade) => {
         return (
@@ -39,14 +39,14 @@ const Home = ({ userName }) => {
             </View>
 
             <View style={styles.secondBox}>
-                <TouchableOpacity style={styles.crudButton}>
+                <TouchableOpacity style={styles.crudButton} onPress={() => navigation.navigate('CRUD Estoque')}>
                     <View style={styles.boxCrud}>
                     <Feather name='box' color={'#fff'} size={40} style={styles.iconStyle}/>
                     <Feather name='plus' color={'#fff'} size={30} style={styles.iconStyleExtra}/>
 
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.crudButton}>
+                <TouchableOpacity style={styles.crudButton} onPress={() => navigation.navigate('CRUD Estoque2')}>
                     <View style={styles.boxCrud}>
                     <Feather name='box' color={'#fff'} size={40} style={styles.iconStyle}/>
                     <Feather name='x' color={'#fff'} size={30} style={styles.iconStyleExtra}/>

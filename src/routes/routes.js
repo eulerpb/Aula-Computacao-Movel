@@ -13,6 +13,8 @@ import Estoque from '../screens/Estoque';
 import ItemManage from '../screens/ItemManage';
 import ItemCreate from '../screens/ItemCreate';
 import NewUser from '../screens/NewUser';
+import ManageEstoque from '../screens/addItem';
+import ManageEstoque1 from '../screens/crudStock';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -63,6 +65,8 @@ const AppNavigator = (props) => {
           <Stack.Screen name="Home" component={NavBar}/>
           <Stack.Screen name="Criar Produto" component={ItemCreate}/>
           <Stack.Screen name="Novo Usuário" component={NewUser}/>
+          <Stack.Screen name="CRUD Estoque" component={ManageEstoque}/>
+          <Stack.Screen name="CRUD Estoque2" component={ManageEstoque1}/>
 
         </Stack.Navigator>
       </NavigationContainer>
