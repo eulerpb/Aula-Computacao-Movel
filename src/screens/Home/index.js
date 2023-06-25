@@ -5,14 +5,14 @@ import Feather from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
 import axios from 'axios';
 
-const Home = ({ userName, navigation }) => {
+const Home = ({ navigation }) => {
     const [productList, setProductList] = useState([]);
     const [dataHistoryItem, setDataHistoryItem] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://192.168.0.103:3000/activity');
+                const response = await axios.get('http://192.168.0.109:3000/activity');
                 setDataHistoryItem(response.data);
             } catch (error) {
                 console.error(error);
@@ -23,23 +23,23 @@ const Home = ({ userName, navigation }) => {
 
     const refreshData = async () => {
         try {
-            const productListResponse = await axios.get('http://192.168.0.103:3000/produtos');
+            const productListResponse = await axios.get('http://192.168.0.109:3000/produtos');
             setProductList(productListResponse.data);
 
-            const dataHistoryResponse = await axios.get('http://192.168.0.103:3000/activity');
+            const dataHistoryResponse = await axios.get('http://192.168.0.109:3000/activity');
             setDataHistoryItem(dataHistoryResponse.data);
         } catch (error) {
             console.error(error);
         }
     };
-
+    
     useEffect(() => {
-        fetchProducts();
+        fetchProducts();    
     }, []);
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('http://192.168.0.103:3000/produtos');
+            const response = await axios.get('http://192.168.0.109:3000/produtos');
             setProductList(response.data);
         } catch (error) {
             console.log('Erro ao buscar os produtos:', error);

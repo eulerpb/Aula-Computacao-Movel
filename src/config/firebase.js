@@ -1,14 +1,16 @@
-import {getAuth} from "firebase/auth";
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAjF938g-KaIIGsXadLIMv4QxZ757YSsxE",
-  authDomain: "estoque-f4e7c.firebaseapp.com",
-  projectId: "estoque-f4e7c",
-  storageBucket: "estoque-f4e7c.appspot.com",
-  messagingSenderId: "742346216006",
-  appId: "1:742346216006:web:b446dab0bb9cf1db17b047"
+  apiKey: "AIzaSyAUFeiulLhJ3fK1jJjuoFIsOJv-eADUL8w",
+  authDomain: "estoque-app-bd2eb.firebaseapp.com",
+  projectId: "estoque-app-bd2eb",
+  storageBucket: "estoque-app-bd2eb.appspot.com",
+  messagingSenderId: "307469986937",
+  appId: "1:307469986937:web:49e3ec9e612e34576578a8"
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+
+const db = getFirestore(app);
+export default db;

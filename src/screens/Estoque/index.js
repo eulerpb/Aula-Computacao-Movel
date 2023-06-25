@@ -34,7 +34,7 @@ export default function Manage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://192.168.0.103:3000/produtos');
+        const response = await axios.get('http://192.168.0.109:3000/produtos');
         const filteredData = response.data.filter(item => item.quant > 0);
         setStockData(filteredData);
       } catch (error) {

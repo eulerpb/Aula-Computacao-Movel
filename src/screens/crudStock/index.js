@@ -18,7 +18,7 @@ export default function ManageEstoque1({ navigation }) {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('http://192.168.0.103:3000/produtos');
+            const response = await axios.get('http://192.168.0.109:3000/produtos');
             setProductList(response.data);
         } catch (error) {
             console.log('Erro ao buscar os produtos:', error);
@@ -42,14 +42,14 @@ export default function ManageEstoque1({ navigation }) {
             if (selectedProductItem) {
                 const updatedQuantity = selectedProductItem.quant + (quantity * (selectedOption === 'Adicionar' ? 1 : -1));
 
-                await axios.put(`http://192.168.0.103:3000/produtos/${selectedProductItem.id}`, {
+                await axios.put(`http://192.168.0.109:3000/produtos/${selectedProductItem.id}`, {
                     ...selectedProductItem,
                     quant: updatedQuantity,
                 });
 
                 const currentDate = format(new Date(), 'dd/MM HH:mm');
 
-                await axios.post('http://192.168.0.103:3000/activity', {
+                await axios.post('http://192.168.0.109:3000/activity', {
                     productId: selectedProductItem.id,
                     action: selectedOption,
                     quantity: quantity,
