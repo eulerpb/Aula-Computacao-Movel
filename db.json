@@ -6,7 +6,7 @@
       "type": "Caixa",
       "description": "Um exemplo de um produto qualquer",
       "price": "123456",
-      "quant": 8
+      "quant": 45
     },
     {
       "id": 2,
@@ -185,6 +185,22 @@
       "item": "Produto 1",
       "date": "25/06 17:24",
       "id": 11
+    },
+    {
+      "productId": 1,
+      "action": "Adicionar",
+      "quantity": 40,
+      "item": "Produto 1",
+      "date": "25/06 18:02",
+      "id": 12
+    },
+    {
+      "productId": 1,
+      "action": "Remover",
+      "quantity": 3,
+      "item": "Produto 1",
+      "date": "25/06 18:03",
+      "id": 13
     }
   ]
 }

@@ -15,20 +15,24 @@ export default function ItemCreate({ navigation }) {
 
   const handleCreateItem = async () => {
     try {
-        const newItem = {
-            nome: name,
-            tipo: type,
-            descricao: description,
-            preco: price,
-            quant: 0,
-        };
-        const docRef = await addDoc(collection(db, 'Produtos'), newItem);
-        console.log('Item created with ID: ', docRef.id);
+      const querySnapshot = await getDocs(collection(db, 'Produtos'));
+      const itemCount = querySnapshot.size;
+      const newItem = {
+        id: itemCount + 1,
+        nome: name,
+        tipo: type,
+        descricao: description,
+        preco: price,
+        quant: 0,
+      };
 
-        navigation.navigate('Produtos');
+      const docRef = await addDoc(collection(db, 'Produtos'), newItem);
+      console.log('Item created with ID: ', docRef.id);
+
+      navigation.navigate('Produtos');
     } catch (error) {
       console.error('Error creating item:', error);
-    }    
+    }
   };
 
   const handleCancel = () => {

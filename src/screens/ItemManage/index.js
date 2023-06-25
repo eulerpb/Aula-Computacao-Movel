@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import styles from './styles';
 import Feather from 'react-native-vector-icons/Feather';
-import axios from 'axios';
+import { collection, getDocs } from 'firebase/firestore';
+import db from '../../config/firebase';
 
 const TableHeader = () => {
     return (
@@ -16,42 +17,59 @@ const TableHeader = () => {
     );
 };
 
-const StockItem = ({ id, type, name, price }) => {
+const StockItem = ({ id, tipo, nome, preco }) => {
     return (
         <View style={styles.productList}>
             <Text style={styles.productListText}>#{id}</Text>
             <Text style={styles.productListText}>|</Text>
-            <Text style={styles.productListText}>{type}</Text>
+            <Text style={styles.productListText}>{tipo}</Text>
             <Text style={styles.productListText}>|</Text>
-            <Text style={styles.productListText}>{name}</Text>
+            <Text style={styles.productListText}>{nome}</Text>
             <Text style={styles.productListText}>|</Text>
-            <Text style={styles.productListText}>R$ {price},00</Text>
+            <Text style={styles.productListText}>R$ {preco},00</Text>
         </View>
     );
 };
 
 export default function ItemManage({ navigation }) {
-    const [stockData, setStockData] = useState(true);
-    const refreshData = async () => {
+    const [stockData, setStockData] = useState([]);
+    
+    useEffect(() => {
+        const fetchStockData = async () => {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'Produtos'));
+                const data = [];
+                querySnapshot.forEach((doc) => {
+                    data.push({ id: doc.id, ...doc.data() });
+                });
+                setStockData(data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchStockData();
+    }, []);
+
+    const fetchStockData = async () => {
         try {
-            const response = await axios.get('http://192.168.0.109:3000/produtos');
-            setStockData(response.data);
+            const querySnapshot = await getDocs(collection(db, 'Produtos'));
+            const data = [];
+            querySnapshot.forEach((doc) => {
+                data.push({ id: doc.id, ...doc.data() });
+            });
+            setStockData(data);
         } catch (error) {
             console.error(error);
         }
     };
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://192.168.0.109:3000/produtos');
-                setStockData(response.data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchData();
+        fetchStockData();
     }, []);
+
+    const handleRefresh = () => {
+        fetchStockData();
+    };
 
     return (
         <View style={styles.page}>
@@ -63,23 +81,26 @@ export default function ItemManage({ navigation }) {
 
             <View style={styles.forms}>
                 <View style={styles.alignButtons}>
-                    <TouchableOpacity style={styles.newItemButton} onPress={() => navigation.navigate('Criar Produto')}>
+                    <TouchableOpacity
+                        style={styles.newItemButton}
+                        onPress={() => navigation.navigate('Criar Produto')}
+                    >
                         <Text style={styles.newItemButtonText}>Adicionar novo item</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.refreshButton} onPress={refreshData}>
-                        <Feather name='refresh-cw' color={'#151E47'} size={30} />
+                    <TouchableOpacity style={styles.refreshButton} onPress={(handleRefresh)}>
+                        <Feather name="refresh-cw" color={'#151E47'} size={30} />
                     </TouchableOpacity>
                 </View>
 
                 <TableHeader />
                 <FlatList
                     data={stockData}
-                    keyExtractor={(item, index) => index.toString()}
+                    keyExtractor={(item) => item.id}
                     renderItem={({ item }) => <StockItem {...item} />}
                     ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
                 />
             </View>
         </View>
     );
-};
+}
