@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, FlatList } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity} from 'react-native';
 import styles from './styles';
-import ScrollButton from '../../components/ScrollButton';
-import axios from 'axios';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import db from '../../config/firebase';
+import Feather from 'react-native-vector-icons/Feather';
 
 const TableHeader = () => {
   return (
     <View style={styles.cabecalho}>
-      <Text style={styles.cabecalhoText}>Quantidade</Text>
+      <Text style={styles.cabecalhoText}>Quant</Text>
       <Text style={styles.cabecalhoText}>|</Text>
       <Text style={styles.cabecalhoText}>Tipo</Text>
       <Text style={styles.cabecalhoText}>|</Text>
@@ -16,14 +17,14 @@ const TableHeader = () => {
   );
 };
 
-const StockItem = ({ quant, type, name }) => {
+const StockItem = ({ quant, tipo, nome }) => {
   return (
     <View style={styles.stockItem}>
       <Text style={styles.stockItemText}>{quant}</Text>
       <Text style={styles.stockItemText}>|</Text>
-      <Text style={styles.stockItemText}>{type}</Text>
+      <Text style={styles.stockItemText}>{tipo}</Text>
       <Text style={styles.stockItemText}>|</Text>
-      <Text style={styles.stockItemText}>{name}</Text>
+      <Text style={styles.stockItemText}>{nome}</Text>
     </View>
   );
 };
@@ -31,19 +32,25 @@ const StockItem = ({ quant, type, name }) => {
 export default function Manage() {
   const [stockData, setStockData] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://192.168.0.103:3000/produtos');
-        const filteredData = response.data.filter(item => item.quant > 0);
-        setStockData(filteredData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const stockRef = collection(db, 'Produtos');
+      const q = query(stockRef, where('quant', '>', 0));
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map((doc) => doc.data());
+      setStockData(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
+
+  const handleRefresh = () => {
+    fetchData();
+  };
 
   return (
     <View style={styles.page}>
@@ -55,6 +62,10 @@ export default function Manage() {
 
       <View style={styles.principalBox}>
         <Text style={styles.selecionarEstoque}>Estoque Principal</Text>
+
+        <TouchableOpacity style={styles.refreshButton} onPress={(handleRefresh)}>
+          <Feather name="refresh-cw" color={'#151E47'} size={30} />
+        </TouchableOpacity>
         
         {/* <ScrollButton /> */}
 

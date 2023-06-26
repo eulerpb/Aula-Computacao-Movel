@@ -3,48 +3,49 @@ import { View, Text, TouchableOpacity, Image, FlatList } from 'react-native';
 import styles from './styles';
 import Feather from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
-import axios from 'axios';
+import { collection, getDocs } from 'firebase/firestore';
+import db from '../../config/firebase';
 
-const Home = ({ userName, navigation }) => {
+const Home = ({ navigation }) => {
     const [productList, setProductList] = useState([]);
-    const [dataHistoryItem, setDataHistoryItem] = useState(true);
+    const [dataHistoryItem, setDataHistoryItem] = useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://192.168.0.103:3000/activity');
-                setDataHistoryItem(response.data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchData();
+        fetchProducts();
+        fetchHistoryItems();
     }, []);
 
     const refreshData = async () => {
         try {
-            const productListResponse = await axios.get('http://192.168.0.103:3000/produtos');
-            setProductList(productListResponse.data);
-
-            const dataHistoryResponse = await axios.get('http://192.168.0.103:3000/activity');
-            setDataHistoryItem(dataHistoryResponse.data);
+            await fetchProducts();
+            await fetchHistoryItems();
         } catch (error) {
             console.error(error);
         }
     };
 
-    useEffect(() => {
-        fetchProducts();
-    }, []);
-
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('http://192.168.0.103:3000/produtos');
-            setProductList(response.data);
+            const querySnapshot = await getDocs(collection(db, 'Produtos'));
+            const products = querySnapshot.docs.map((doc) => doc.data());
+            setProductList(products);
         } catch (error) {
             console.log('Erro ao buscar os produtos:', error);
         }
     };
+
+    const fetchHistoryItems = async () => {
+        try {
+          const querySnapshot = await getDocs(collection(db, 'Activity'));
+          const historyItems = querySnapshot.docs.map((doc) => doc.data());
+          
+          historyItems.sort((a, b) => b.id - a.id);
+          
+          setDataHistoryItem(historyItems);
+        } catch (error) {
+          console.error('Erro ao buscar os itens de histórico:', error);
+        }
+      };
 
     const calculateTotalQuantity = () => {
         const totalQuantity = productList.reduce((acc, product) => {
@@ -89,7 +90,6 @@ const Home = ({ userName, navigation }) => {
             </View>
         );
     };
-
 
     const renderBox = (icon, titulo, quantidade) => {
         return (
