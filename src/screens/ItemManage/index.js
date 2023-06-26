@@ -58,6 +58,7 @@ export default function ItemManage({ navigation }) {
                 data.push({ id: doc.id, ...doc.data() });
             });
             setStockData(data);
+            data.sort((a, b) => a.id - b.id);
         } catch (error) {
             console.error(error);
         }

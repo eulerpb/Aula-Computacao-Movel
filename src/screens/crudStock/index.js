@@ -3,7 +3,8 @@ import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import styles from './styles';
 import RadioButtonComponent from '../../components/RadioButton';
-import axios from 'axios';
+import { collection, addDoc, updateDoc, getDocs, doc } from 'firebase/firestore';
+import db from '../../config/firebase';
 import { format } from 'date-fns';
 
 export default function ManageEstoque1({ navigation }) {
@@ -18,8 +19,13 @@ export default function ManageEstoque1({ navigation }) {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('http://192.168.0.109:3000/produtos');
-            setProductList(response.data);
+            const querySnapshot = await getDocs(collection(db, 'Produtos'));
+            const data = [];
+            querySnapshot.forEach((doc) => {
+                data.push({ id: doc.id, ...doc.data() });
+                console.log(doc.id);
+            });
+            setProductList(data);
         } catch (error) {
             console.log('Erro ao buscar os produtos:', error);
         }
@@ -37,34 +43,38 @@ export default function ManageEstoque1({ navigation }) {
 
     const handleSave = async () => {
         try {
-            const selectedProductItem = productList.find(product => product.name === selectedProduct);
 
+            const selectedProductItem = productList.find((product) => product.nome === selectedProduct);
+
+            console.log(selectedProduct);
+            
             if (selectedProductItem) {
                 const updatedQuantity = selectedProductItem.quant + (quantity * (selectedOption === 'Adicionar' ? 1 : -1));
 
-                await axios.put(`http://192.168.0.109:3000/produtos/${selectedProductItem.id}`, {
-                    ...selectedProductItem,
-                    quant: updatedQuantity,
+                await updateDoc(doc(db, 'Produtos', selectedProductItem.reference), { 
+                    quant: updatedQuantity 
                 });
 
                 const currentDate = format(new Date(), 'dd/MM HH:mm');
+                const querySnapshot = await getDocs(collection(db, 'Activity'));
+                const itemCount = querySnapshot.size;
 
-                await axios.post('http://192.168.0.109:3000/activity', {
+                await addDoc(collection(db, 'Activity'), {
+                    id: itemCount + 1,
                     productId: selectedProductItem.id,
                     action: selectedOption,
                     quantity: quantity,
-                    item: selectedProductItem.name,
+                    item: selectedProductItem.nome,
                     date: currentDate,
                 });
 
-                const updatedProductList = productList.map(product =>
+                const updatedProductList = productList.map((product) =>
                     product.id === selectedProductItem.id ? { ...product, quant: updatedQuantity } : product
                 );
                 setProductList(updatedProductList);
             }
 
             navigation.navigate('Home');
-
         } catch (error) {
             console.error('Erro ao atualizar a quantidade:', error);
         }
@@ -100,7 +110,7 @@ export default function ManageEstoque1({ navigation }) {
                         <TextInput
                             style={styles.input}
                             value={quantity.toString()}
-                            onChangeText={text => setQuantity(parseInt(text) || 0)}
+                            onChangeText={(text) => setQuantity(parseInt(text) || 0)}
                             keyboardType="numeric"
                         />
                         <TouchableOpacity style={styles.button} onPress={handleIncrement}>
@@ -111,9 +121,9 @@ export default function ManageEstoque1({ navigation }) {
                             onValueChange={(itemValue) => setSelectedProduct(itemValue)}
                             style={styles.picker}
                             itemStyle={styles.pickerItem}>
-                            <Picker.Item label="Selecione um produto" value="" />
+                            <Picker.Item label="Selecione um produto" />
                             {productList.map((product) => (
-                                <Picker.Item key={product.id} label={product.name} value={product.name} />
+                                <Picker.Item key={product.id} label={product.nome} value={product.nome} />
                             ))}
                         </Picker>
                     </View>

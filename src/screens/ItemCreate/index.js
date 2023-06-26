@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import styles from './styles';
 import RadioButtonComponent from '../../components/RadioButton';
 import ConfirmationModal from '../../components/ConfirmationModal';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { collection, addDoc, getDocs, setDoc, doc } from 'firebase/firestore';
 import db from '../../config/firebase';
 
 export default function ItemCreate({ navigation }) {
@@ -18,15 +18,26 @@ export default function ItemCreate({ navigation }) {
       const querySnapshot = await getDocs(collection(db, 'Produtos'));
       const itemCount = querySnapshot.size;
       const newItem = {
+        id: '',
+        nome: name,
+        tipo: type,
+        descricao: description,
+        preco: price,
+        quant: 0,
+        reference: '',
+      };
+
+      const docRef = await addDoc(collection(db, 'Produtos'), newItem);
+      newItem.reference = docRef.id;
+      await setDoc(doc(db, 'Produtos', docRef.id), {
         id: itemCount + 1,
         nome: name,
         tipo: type,
         descricao: description,
         preco: price,
         quant: 0,
-      };
-
-      const docRef = await addDoc(collection(db, 'Produtos'), newItem);
+        reference: docRef.id,
+      })
       console.log('Item created with ID: ', docRef.id);
 
       navigation.navigate('Produtos');
