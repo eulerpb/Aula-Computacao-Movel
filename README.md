@@ -45,7 +45,7 @@ O login e cadastro do aplicativo não está implementado, neste caso foi criado 
 
 ```bash
 e-mail: teste@teste.com
-senha: 123456
+senha: 123456'
 ```
 ## Depêndencias
 
@@ -88,3 +88,7 @@ Para o desenvolvimento e utilização do aplicativo, foram utilizados as seguint
 - `config`: Contém a configuração de comunicação com o firebase.
 - `routes`: Configuração de navegação.
 - `screens`: Telas do aplicativo.
+
+## Recomendações
+
+Para melhor execução do aplicativo recomenda-se executar o projeto com ```npm run android``` e utilizar o aplicativo expo (escaneando o QR Code) para utilização do aplicativo.
