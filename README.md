@@ -40,6 +40,13 @@ npm run web
 npm run android
 npm run ios
 ```
+
+O login e cadastro do aplicativo não está implementado, neste caso foi criado um usuário padrão para que seja feito o "login"
+
+```bash
+e-mail: teste@teste.com
+senha: 123456
+```
 ## Depêndencias
 
 Para o desenvolvimento e utilização do aplicativo, foram utilizados as seguintes depêndencias:
